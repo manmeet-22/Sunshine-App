@@ -28,6 +28,10 @@
         </activity>
         <activity android:name=".SettingsActivity"
             android:label="Settings"/>
+        <provider
+            android:authorities="com.manmeet.sunshine"
+            android:name="com.manmeet.sunshine.data.WeatherProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>
