@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager;
@@ -25,6 +26,8 @@ import android.widget.TextView;
 
 import com.manmeet.sunshine.data.SunshinePreferences;
 import com.manmeet.sunshine.data.WeatherContract;
+import com.manmeet.sunshine.sync.SunshineSyncTask;
+import com.manmeet.sunshine.sync.SunshineSyncUtils;
 import com.manmeet.sunshine.utilities.FakeDataUtils;
 import com.manmeet.sunshine.utilities.NetworkUtils;
 import com.manmeet.sunshine.utilities.OpenWeatherJsonUtils;
@@ -65,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forecast);
-        FakeDataUtils.insertFakeData(this);
 
         /*
          * Using findViewById, we get a reference to our RecyclerView from xml. This allows us to
@@ -148,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements
          */
         showLoading();
         getSupportLoaderManager().initLoader(loaderId, bundleForLoader, callback);
+        SunshineSyncUtils.initialize(this);
     }
 
     /**
