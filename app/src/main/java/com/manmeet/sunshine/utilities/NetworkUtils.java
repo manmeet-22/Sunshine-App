@@ -20,6 +20,19 @@ public final class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
+    /*
+     * Sunshine was originally built to use OpenWeatherMap's API. However, we wanted to provide
+     * a way to much more easily test the app and provide more varied weather data. After all, in
+     * Mountain View (Google's HQ), it gets very boring looking at a forecast of perfectly clear
+     * skies at 75°F every day... (UGH!) The solution we came up with was to host our own fake
+     * weather server. With this server, there are two URL's you can use. The first (and default)
+     * URL will return dynamic weather data. Each time the app refreshes, you will get different,
+     * completely random weather data. This is incredibly useful for testing the robustness of your
+     * application, as different weather JSON will provide edge cases for some of your methods.
+     *
+     * If you'd prefer to test with the weather data that you will see in the videos on Udacity,
+     * you can do so by setting the FORECAST_BASE_URL to STATIC_WEATHER_URL below.
+     */
     private static final String DYNAMIC_WEATHER_URL =
             "https://andfun-weather.udacity.com/weather";
 
@@ -42,13 +55,33 @@ public final class NetworkUtils {
     /* The number of days we want our API to return */
     private static final int numDays = 14;
 
-    final static String QUERY_PARAM = "q";
-    final static String LAT_PARAM = "lat";
-    final static String LON_PARAM = "lon";
-    final static String FORMAT_PARAM = "mode";
-    final static String UNITS_PARAM = "units";
-    final static String DAYS_PARAM = "cnt";
+    /* The query parameter allows us to provide a location string to the API */
+    private static final String QUERY_PARAM = "q";
 
+    private static final String LAT_PARAM = "lat";
+    private static final String LON_PARAM = "lon";
+
+    /* The format parameter allows us to designate whether we want JSON or XML from our API */
+    private static final String FORMAT_PARAM = "mode";
+    /* The units parameter allows us to designate whether we want metric units or imperial units */
+    private static final String UNITS_PARAM = "units";
+    /* The days parameter allows us to designate how many days of weather data we want */
+    private static final String DAYS_PARAM = "cnt";
+
+    /**
+     * Retrieves the proper URL to query for the weather data. The reason for both this method as
+     * well as {@link #buildUrlWithLocationQuery(String)} is two fold.
+     * <p>
+     * 1) You should be able to just use one method when you need to create the URL within the
+     * app instead of calling both methods.
+     * 2) Later in Sunshine, you are going to add an alternate method of allowing the user
+     * to select their preferred location. Once you do so, there will be another way to form
+     * the URL using a latitude and longitude rather than just a location String. This method
+     * will "decide" which URL to build and return it.
+     *
+     * @param context used to access other Utility methods
+     * @return URL to query weather service
+     */
     public static URL getUrl(Context context) {
         if (SunshinePreferences.isLocationLatLonAvailable(context)) {
             double[] preferredCoordinates = SunshinePreferences.getLocationCoordinates(context);
@@ -59,7 +92,17 @@ public final class NetworkUtils {
             String locationQuery = SunshinePreferences.getPreferredWeatherLocation(context);
             return buildUrlWithLocationQuery(locationQuery);
         }
-    } private static URL buildUrlWithLatitudeLongitude(Double latitude, Double longitude) {
+    }
+
+    /**
+     * Builds the URL used to talk to the weather server using latitude and longitude of a
+     * location.
+     *
+     * @param latitude  The latitude of the location
+     * @param longitude The longitude of the location
+     * @return The Url to use to query the weather server.
+     */
+    private static URL buildUrlWithLatitudeLongitude(Double latitude, Double longitude) {
         Uri weatherQueryUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
                 .appendQueryParameter(LAT_PARAM, String.valueOf(latitude))
                 .appendQueryParameter(LON_PARAM, String.valueOf(longitude))

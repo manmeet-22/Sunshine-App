@@ -45,6 +45,7 @@ public class SunshineFirebaseJobService extends com.firebase.jobdispatcher.JobSe
             protected Void doInBackground(Void... voids) {
                 Context context = getApplicationContext();
                 SunshineSyncTask.syncWeather(context);
+                jobFinished(jobParameters, false);
                 return null;
             }
 
