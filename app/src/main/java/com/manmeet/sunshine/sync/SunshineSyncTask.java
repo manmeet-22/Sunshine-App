@@ -3,8 +3,6 @@ package com.manmeet.sunshine.sync;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 
 import com.manmeet.sunshine.data.SunshinePreferences;
@@ -14,6 +12,7 @@ import com.manmeet.sunshine.utilities.NotificationUtils;
 import com.manmeet.sunshine.utilities.OpenWeatherJsonUtils;
 
 import java.net.URL;
+
 public class SunshineSyncTask {
 
     /**
@@ -62,6 +61,7 @@ public class SunshineSyncTask {
                         WeatherContract.WeatherEntry.CONTENT_URI,
                         weatherValues);
 
+//              COMPLETED (13) Check if notifications are enabled
                 /*
                  * Finally, after we insert data into the ContentProvider, determine whether or not
                  * we should notify the user that the weather has been refreshed.
@@ -78,6 +78,7 @@ public class SunshineSyncTask {
 
                 boolean oneDayPassedSinceLastNotification = false;
 
+//              COMPLETED (14) Check if a day has passed since the last notification
                 if (timeSinceLastNotification >= DateUtils.DAY_IN_MILLIS) {
                     oneDayPassedSinceLastNotification = true;
                 }
@@ -86,6 +87,7 @@ public class SunshineSyncTask {
                  * We only want to show the notification if the user wants them shown and we
                  * haven't shown a notification in the past day.
                  */
+//              COMPLETED (15) If more than a day have passed and notifications are enabled, notify the user
                 if (notificationsEnabled && oneDayPassedSinceLastNotification) {
                     NotificationUtils.notifyUserOfNewWeather(context);
                 }

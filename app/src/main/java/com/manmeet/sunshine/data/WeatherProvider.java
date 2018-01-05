@@ -11,11 +11,6 @@ import android.support.annotation.NonNull;
 
 import com.manmeet.sunshine.utilities.SunshineDateUtils;
 
-import static com.manmeet.sunshine.data.WeatherContract.CONTENT_AUTHORITY;
-import static com.manmeet.sunshine.data.WeatherContract.PATH_WEATHER;
-import static com.manmeet.sunshine.data.WeatherContract.WeatherEntry.COLUMN_DATE;
-import static com.manmeet.sunshine.data.WeatherContract.WeatherEntry.TABLE_NAME;
-
 /**
  * This class serves as the ContentProvider for all of Sunshine's data. This class allows us to
  * bulkInsert data, query data, and delete data.
@@ -76,11 +71,11 @@ public class WeatherProvider extends ContentProvider {
          * they aren't going to change. In Sunshine, we use CODE_WEATHER or CODE_WEATHER_WITH_DATE.
          */
 
-        /* This URI is content://com.example.android.sunshine/weather/ */
+        /* This URI is content://com.manmeet.sunshine/weather/ */
         matcher.addURI(authority, WeatherContract.PATH_WEATHER, CODE_WEATHER);
 
         /*
-         * This URI would look something like content://com.example.android.sunshine/weather/1472214172
+         * This URI would look something like content://com.manmeet.sunshine/weather/1472214172
          * The "/#" signifies to the UriMatcher that if PATH_WEATHER is followed by ANY number,
          * that it should return the CODE_WEATHER_WITH_DATE code
          */
@@ -196,7 +191,7 @@ public class WeatherProvider extends ContentProvider {
             /*
              * When sUriMatcher's match method is called with a URI that looks something like this
              *
-             *      content://com.example.android.sunshine/weather/1472214172
+             *      content://com.manmeet.sunshine/weather/1472214172
              *
              * sUriMatcher's match method will return the code that indicates to us that we need
              * to return the weather for a particular date. The date in this code is encoded in
@@ -254,7 +249,7 @@ public class WeatherProvider extends ContentProvider {
             /*
              * When sUriMatcher's match method is called with a URI that looks EXACTLY like this
              *
-             *      content://com.example.android.sunshine/weather/
+             *      content://com.manmeet.sunshine/weather/
              *
              * sUriMatcher's match method will return the code that indicates to us that we need
              * to return all of the weather in our weather table.

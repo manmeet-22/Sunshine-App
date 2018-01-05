@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import com.firebase.jobdispatcher.Constraint;
@@ -17,7 +16,6 @@ import com.firebase.jobdispatcher.Trigger;
 import com.manmeet.sunshine.data.WeatherContract;
 
 import java.util.concurrent.TimeUnit;
-
 
 public class SunshineSyncUtils {
 

@@ -13,6 +13,7 @@ import com.manmeet.sunshine.data.SunshinePreferences;
 import com.manmeet.sunshine.data.WeatherContract;
 import com.manmeet.sunshine.sync.SunshineSyncUtils;
 
+
 /**
  * The SettingsFragment serves as the display for all of the user's settings. In Sunshine, the
  * user will be able to change their preference for units of measurement from metric to imperial,

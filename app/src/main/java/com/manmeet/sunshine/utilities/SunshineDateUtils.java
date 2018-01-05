@@ -3,6 +3,7 @@ package com.manmeet.sunshine.utilities;
 import android.content.Context;
 import android.text.format.DateUtils;
 
+
 import com.manmeet.sunshine.R;
 
 import java.text.SimpleDateFormat;

@@ -2,14 +2,10 @@ package com.manmeet.sunshine.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 
-import com.firebase.jobdispatcher.Job;
-import com.firebase.jobdispatcher.JobParameters;
-import com.firebase.jobdispatcher.JobService;
-import com.firebase.jobdispatcher.RetryStrategy;
 import com.manmeet.sunshine.R;
+
 
 public final class SunshinePreferences {
 
@@ -117,7 +113,7 @@ public final class SunshinePreferences {
          * into the double itself.
          */
         preferredCoordinates[0] = Double
-                .longBitsToDouble(sp.getLong(PREF_COORD_LAT, Double.doubleToRawLongBits(0.0)));
+                 .longBitsToDouble(sp.getLong(PREF_COORD_LAT, Double.doubleToRawLongBits(0.0)));
         preferredCoordinates[1] = Double
                 .longBitsToDouble(sp.getLong(PREF_COORD_LONG, Double.doubleToRawLongBits(0.0)));
 

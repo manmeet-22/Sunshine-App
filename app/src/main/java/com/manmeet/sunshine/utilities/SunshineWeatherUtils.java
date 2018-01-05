@@ -6,7 +6,6 @@ import android.util.Log;
 import com.manmeet.sunshine.R;
 import com.manmeet.sunshine.data.SunshinePreferences;
 
-
 /**
  * Contains useful utilities for a weather app, such as conversion between Celsius and Fahrenheit,
  * from kph to mph, and from degrees to NSEW.  It also contains the mapping of weather condition

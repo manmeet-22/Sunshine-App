@@ -3,6 +3,7 @@ package com.manmeet.sunshine.utilities;
 import android.content.ContentValues;
 import android.content.Context;
 
+
 import com.manmeet.sunshine.data.SunshinePreferences;
 import com.manmeet.sunshine.data.WeatherContract;
 

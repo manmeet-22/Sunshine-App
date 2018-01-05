@@ -5,13 +5,10 @@ import android.content.Context;
 
 
 import com.manmeet.sunshine.data.WeatherContract;
-import com.manmeet.sunshine.data.WeatherContract.WeatherEntry;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import static com.manmeet.sunshine.data.WeatherContract.WeatherEntry.*;
 
 
 public class FakeDataUtils {
@@ -25,15 +22,15 @@ public class FakeDataUtils {
      */
     private static ContentValues createTestWeatherContentValues(long date) {
         ContentValues testWeatherValues = new ContentValues();
-        testWeatherValues.put(COLUMN_DATE, date);
-        testWeatherValues.put(COLUMN_DEGREES, Math.random()*2);
-        testWeatherValues.put(COLUMN_HUMIDITY, Math.random()*100);
-        testWeatherValues.put(COLUMN_PRESSURE, 870 + Math.random()*100);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_DATE, date);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_DEGREES, Math.random()*2);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_HUMIDITY, Math.random()*100);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, 870 + Math.random()*100);
         int maxTemp = (int)(Math.random()*100);
-        testWeatherValues.put(COLUMN_MAX_TEMP, maxTemp);
-        testWeatherValues.put(COLUMN_MIN_TEMP, maxTemp - (int) (Math.random()*10));
-        testWeatherValues.put(COLUMN_WIND_SPEED, Math.random()*10);
-        testWeatherValues.put(COLUMN_WEATHER_ID, weatherIDs[(int)(Math.random()*10)%5]);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_MAX_TEMP, maxTemp);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_MIN_TEMP, maxTemp - (int) (Math.random()*10));
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, Math.random()*10);
+        testWeatherValues.put(WeatherContract.WeatherEntry.COLUMN_WEATHER_ID, weatherIDs[(int)(Math.random()*10)%5]);
         return testWeatherValues;
     }
 
@@ -51,7 +48,7 @@ public class FakeDataUtils {
         }
         // Bulk Insert our new weather data into Sunshine's Database
         context.getContentResolver().bulkInsert(
-                CONTENT_URI,
+                WeatherContract.WeatherEntry.CONTENT_URI,
                 fakeValues.toArray(new ContentValues[7]));
     }
 }
