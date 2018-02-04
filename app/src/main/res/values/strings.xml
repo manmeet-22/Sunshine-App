@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   - This file contains all of the strings used throughout Sunshine. They can be accessed       -
   - through calls to Context#getString. This strings are organized by where they are used in   -
